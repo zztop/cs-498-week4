@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="66e90ac1-bca0-4fab-a28f-af07dfe1874e" name="Default" comment="" />
+    <list default="true" id="66e90ac1-bca0-4fab-a28f-af07dfe1874e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pca.py" afterPath="$PROJECT_DIR$/pca.py" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,11 +21,10 @@
       <file leaf-file-name="pca.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pca.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="26" column="42" lean-forward="false" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="42" />
+            <state relative-caret-position="455">
+              <caret line="21" column="30" lean-forward="true" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
-                <element signature="e#3327#4794#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -45,6 +47,8 @@
       <find>label_mean_frame</find>
       <find>mean_distance</find>
       <find>compute_euclidean_distance</find>
+      <find>show_mean_distance</find>
+      <find>append</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -261,7 +265,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/pca.py</url>
-          <line>164</line>
+          <line>170</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -271,22 +275,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/pca.py</url>
-          <line>70</line>
+          <line>76</line>
           <option name="timeStamp" value="100" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/pca.py</url>
-          <line>158</line>
+          <line>164</line>
           <option name="timeStamp" value="107" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/pca.py</url>
-          <line>105</line>
+          <line>111</line>
           <option name="timeStamp" value="109" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/pca.py</url>
-          <line>27</line>
+          <line>28</line>
           <option name="timeStamp" value="110" />
         </line-breakpoint>
       </breakpoints>
@@ -297,7 +301,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="111" />
+      <option name="time" value="113" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -308,7 +312,6 @@
           <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3327#4794#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -383,7 +386,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3327#4794#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -434,7 +436,6 @@
           <caret line="62" column="24" lean-forward="false" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3327#4794#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -485,7 +486,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3327#4794#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -512,7 +512,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3327#4794#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -523,7 +522,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3327#4794#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -534,7 +532,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3327#4794#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -545,7 +542,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3327#4794#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -556,7 +552,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3327#4794#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -655,11 +650,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pca.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="26" column="42" lean-forward="false" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="42" />
+        <state relative-caret-position="455">
+          <caret line="21" column="30" lean-forward="true" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3327#4794#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -25,14 +25,12 @@ def mean_distance(class_data):
 
 
 def show_mean_distance(label_mean_distance, fig_name):
+    pd.DataFrame(label_mean_distance).to_html('matrix_' + fig_name + '.html')
     fig, ax = plt.subplots()
     ax.scatter(label_mean_distance[:, 0], label_mean_distance[:, 1], cmap=plt.cm.Spectral)
-
     for i, txt in enumerate(real_label):
         ax.annotate(txt, (label_mean_distance[:, 0][i], label_mean_distance[:, 1][i]))
-
     plt.axis('tight')
-
     fig.savefig(fig_name)
     plt.close()
 
@@ -52,7 +50,7 @@ def create_error_bar(label_error_frame):
 
 
 def part_3(all_labels, grp_dataset):
-    mixed_label_error = []
+    mixed_label_errors = []
 
     for idx, lbl in enumerate(all_labels):
         g = grouped_dataset.get_group(lbl)
@@ -65,8 +63,16 @@ def part_3(all_labels, grp_dataset):
             mixed_class_label_error.append(
                 ((pca.inverse_transform(pca.transform(mean_image)) - mean_image).pow(2)).sum().sum() / mean_image.shape[
                     0])
-        mixed_label_error.append(mixed_class_label_error)
-    show_mean_distance(np.asarray(mixed_label_error), 'part_3_2d.png')
+        mixed_label_errors.append(mixed_class_label_error)
+
+    mean_mixed_label_errors=[]
+    for idx, lbl in enumerate(all_labels):
+        mean_mixed_label_error=[]
+        for inner_idx,inner_lbl in enumerate(all_labels):
+            mean_mixed_label_error.append((mixed_label_errors[idx][inner_idx] + mixed_label_errors[inner_idx][idx])/2)
+        mean_mixed_label_errors.append(mean_mixed_label_error)
+
+    show_mean_distance(np.asarray(mean_mixed_label_errors), 'part_3_2d.png')
 
     print('done')
 
@@ -117,36 +123,36 @@ if __name__ == "__main__":
 
 
 
-        # Show Images
-        # reshaped_g = np.transpose(np.reshape(g.values, (g.shape[0], 3, 32, 32)), (0, 2, 3, 1))
-        # fig, axes1 = plt.subplots(5, 5, figsize=(3, 3))
-        # for j in range(5):
-        #     for k in range(5):
-        #         i = np.random.choice(range(len(reshaped_g)))
-        #         axes1[j][k].set_axis_off()
-        #         axes1[j][k].imshow(reshaped_g[i:i + 1][0])
+            # Show Images
+            # reshaped_g = np.transpose(np.reshape(g.values, (g.shape[0], 3, 32, 32)), (0, 2, 3, 1))
+            # fig, axes1 = plt.subplots(5, 5, figsize=(3, 3))
+            # for j in range(5):
+            #     for k in range(5):
+            #         i = np.random.choice(range(len(reshaped_g)))
+            #         axes1[j][k].set_axis_off()
+            #         axes1[j][k].imshow(reshaped_g[i:i + 1][0])
 
-        # Error Part 1
-        # pca = PCA(n_components=20)
-        # pca.fit(g)
-        # # total_error = np.sum(pca.explained_variance_ratio_)
-        # label_error.append(((pca.inverse_transform(pca.transform(g)) - g).pow(2)).sum().sum() / g.shape[0])
-
-
+            # Error Part 1
+            # pca = PCA(n_components=20)
+            # pca.fit(g)
+            # # total_error = np.sum(pca.explained_variance_ratio_)
+            # label_error.append(((pca.inverse_transform(pca.transform(g)) - g).pow(2)).sum().sum() / g.shape[0])
 
 
 
 
 
 
-        #
-        # reshaped_g = np.transpose(np.reshape(filtered, (g.shape[0], 3, 32, 32)), (0, 2, 3, 1))
-        # fig, axes1 = plt.subplots(5, 5, figsize=(3, 3))
-        # for j in range(5):
-        #     for k in range(5):
-        #         i = np.random.choice(range(len(reshaped_g)))
-        #         axes1[j][k].set_axis_off()
-        #         axes1[j][k].imshow(reshaped_g[i:i + 1][0])
+
+
+            #
+            # reshaped_g = np.transpose(np.reshape(filtered, (g.shape[0], 3, 32, 32)), (0, 2, 3, 1))
+            # fig, axes1 = plt.subplots(5, 5, figsize=(3, 3))
+            # for j in range(5):
+            #     for k in range(5):
+            #         i = np.random.choice(range(len(reshaped_g)))
+            #         axes1[j][k].set_axis_off()
+            #         axes1[j][k].imshow(reshaped_g[i:i + 1][0])
 
 # plt.imshow(np.transpose(mean_image.iloc[0:1].values.reshape(3, 32, 32), (1, 2, 0)))
 
