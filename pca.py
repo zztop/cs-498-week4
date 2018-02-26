@@ -34,7 +34,7 @@ def show_mean_distance(label_mean_distance, fig_name):
 def create_error_bar(label_error_frame):
     plt.bar(real_label, label_error_frame, align='center', alpha=0.5)
     plt.ylabel('error')
-    plt.title('Programming language usage')
+    plt.title('Error Plot')
 
     plt.savefig('error_1.png')
     plt.close()
