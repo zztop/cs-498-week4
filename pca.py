@@ -70,14 +70,16 @@ def part_3(all_labels, grp_dataset):
 
 if __name__ == "__main__":
     all_data_array = None
-    all_labels = None
+    all_labels = []
 
     for file in ['data_batch_1', 'data_batch_2', 'data_batch_3', 'data_batch_4', 'data_batch_5', 'test_batch']:
         batch = unpickle(file)
         if all_data_array is None:
             all_data_array = batch[b'data']
+            all_labels = batch[b'labels']
         else:
             all_data_array = np.vstack((all_data_array, batch[b'data']))
+            all_labels = all_labels + batch[b'labels']
 
     # all_data_array = all_data_array.reshape(all_data_array.shape[0], 3, 32, 32)
     # labels = np.asarray(batch[b'labels'])
@@ -88,7 +90,7 @@ if __name__ == "__main__":
     # all_data_array = np.transpose(all_data_array.reshape(all_data_array.shape[0],3, 32, 32), (1, 2, 0))
 
     all_data_frame = pd.DataFrame(all_data_array)
-    all_data_frame['label'] = np.asarray(batch[b'labels'])
+    all_data_frame['label'] = np.asarray(all_labels)
     grouped_dataset = all_data_frame.groupby('label')
     labels = list(grouped_dataset.groups.keys())
     label_len = len(labels)
@@ -101,40 +103,40 @@ if __name__ == "__main__":
         g = grouped_dataset.get_group(label)
         g = g.drop(g.columns[[3072]], axis=1)
 
-# ****************Error Part 1
+        # ****************Error Part 1
         pca = PCA(n_components=20)
         pca.fit(g)
         # total_error = np.sum(pca.explained_variance_ratio_)
         label_error.append(((pca.inverse_transform(pca.transform(g)) - g).pow(2)).sum().sum() / g.shape[0])
 
-# *************** Part 2 For 10 * 10 matrix  and MDS
+        # *************** Part 2 For 10 * 10 matrix  and MDS
         mean_image = g.agg([np.mean])
         # # wrong label_frame[label] = mean_distance(g)
         if label_mean_frame is None:
             label_mean_frame = pd.DataFrame(mean_image)
         else:
             label_mean_frame = label_mean_frame.append(mean_image)
-# *****************************************************
+        # *****************************************************
 
 
-            # Show Images
-            # reshaped_g = np.transpose(np.reshape(g.values, (g.shape[0], 3, 32, 32)), (0, 2, 3, 1))
-            # fig, axes1 = plt.subplots(5, 5, figsize=(3, 3))
-            # for j in range(5):
-            #     for k in range(5):
-            #         i = np.random.choice(range(len(reshaped_g)))
-            #         axes1[j][k].set_axis_off()
-            #         axes1[j][k].imshow(reshaped_g[i:i + 1][0])
+        # Show Images
+        # reshaped_g = np.transpose(np.reshape(g.values, (g.shape[0], 3, 32, 32)), (0, 2, 3, 1))
+        # fig, axes1 = plt.subplots(5, 5, figsize=(3, 3))
+        # for j in range(5):
+        #     for k in range(5):
+        #         i = np.random.choice(range(len(reshaped_g)))
+        #         axes1[j][k].set_axis_off()
+        #         axes1[j][k].imshow(reshaped_g[i:i + 1][0])
 
 
-# ***************For Error Part 1
+        # ***************For Error Part 1
     create_error_bar(label_error)
 
-# ************ For Part 2
+    # ************ For Part 2
     label_mean_mds = mean_distance(label_mean_frame)
     show_mean_distance(label_mean_mds, 'part_2_2d')
 
-# *************** PART -3************
+    # *************** PART -3************
     part_3(labels, grouped_dataset)
 # ***************End Of  PART -3************
 
