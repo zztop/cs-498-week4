@@ -19,11 +19,19 @@ seed = np.random.RandomState(seed=3)
 
 def mean_distance(class_data):
     mds = manifold.MDS(2, max_iter=10, random_state=seed, dissimilarity='euclidean', n_init=10)
-    return mds.fit(class_data).dissimilarity_matrix_
+    fit = mds.fit(class_data)
+    pd.DataFrame(fit.dissimilarity_matrix_).to_html('matrix_' + 'part_2' + '.html')
+    return mds.fit(class_data).embedding_
+
+
+def mean_distance_precomputed(class_data):
+    mds = manifold.MDS(2, max_iter=10, random_state=seed, dissimilarity='precomputed', n_init=10)
+    fit = mds.fit(class_data)
+    pd.DataFrame(fit.dissimilarity_matrix_).to_html('matrix_' + 'part_2' + '.html')
+    return mds.fit(class_data).embedding_
 
 
 def show_mean_distance(label_mean_distance, fig_name):
-    pd.DataFrame(label_mean_distance).to_html('matrix_' + fig_name + '.html')
     fig, ax = plt.subplots()
     ax.scatter(label_mean_distance[:, 0], label_mean_distance[:, 1], cmap=plt.cm.Spectral)
     for i, txt in enumerate(real_label):
@@ -51,7 +59,7 @@ def part_3(all_labels, grp_dataset):
         mean_image = class_data.agg([np.mean])
         mixed_class_label_error = []
         for inner_lbl in all_labels:
-            pca = PCA(n_components=20)
+            pca = PCA(n_components=20, svd_solver='full')
             pca.fit(grp_dataset.get_group(inner_lbl).drop(g.columns[[3072]], axis=1))
             mixed_class_label_error.append(
                 ((pca.inverse_transform(pca.transform(mean_image)) - mean_image).pow(2)).sum().sum() / mean_image.shape[
@@ -65,7 +73,7 @@ def part_3(all_labels, grp_dataset):
             mean_mixed_label_error.append((mixed_label_errors[idx][inner_idx] + mixed_label_errors[inner_idx][idx]) / 2)
         mean_mixed_label_errors.append(mean_mixed_label_error)
 
-    show_mean_distance(np.asarray(mean_mixed_label_errors), 'part_3_2d.png')
+    show_mean_distance(mean_distance_precomputed(np.asarray(mean_mixed_label_errors)), 'part_3_2d.png')
 
     print('done')
 
