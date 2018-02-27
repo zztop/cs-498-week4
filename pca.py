@@ -27,7 +27,7 @@ def mean_distance(class_data):
 def mean_distance_precomputed(class_data):
     mds = manifold.MDS(2, max_iter=10, random_state=seed, dissimilarity='precomputed', n_init=10)
     fit = mds.fit(class_data)
-    pd.DataFrame(fit.dissimilarity_matrix_).to_html('matrix_' + 'part_2' + '.html')
+    pd.DataFrame(fit.dissimilarity_matrix_).to_html('matrix_' + 'part_3' + '.html')
     return mds.fit(class_data).embedding_
 
 
@@ -147,7 +147,7 @@ if __name__ == "__main__":
     show_mean_distance(label_mean_mds, 'part_2_2d')
 
     # *************** PART -3************
-    part_3(labels, grouped_dataset)
+    # part_3(labels, grouped_dataset)
 # ***************End Of  PART -3************
 
 
