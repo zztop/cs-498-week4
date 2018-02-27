@@ -14,9 +14,11 @@ def unpickle(file):
     return data
 
 
+seed = np.random.RandomState(seed=3)
+
+
 def mean_distance(class_data):
-    seed = np.random.RandomState(seed=3)
-    mds = manifold.MDS(2, max_iter=10, random_state=seed, dissimilarity='euclidean')
+    mds = manifold.MDS(2, max_iter=10, random_state=seed, dissimilarity='euclidean', n_init=10)
     return mds.fit(class_data).dissimilarity_matrix_
 
 
@@ -116,20 +118,20 @@ if __name__ == "__main__":
             label_mean_frame = pd.DataFrame(mean_image)
         else:
             label_mean_frame = label_mean_frame.append(mean_image)
-        # *****************************************************
+            # *****************************************************
 
 
-        # Show Images
-        # reshaped_g = np.transpose(np.reshape(g.values, (g.shape[0], 3, 32, 32)), (0, 2, 3, 1))
-        # fig, axes1 = plt.subplots(5, 5, figsize=(3, 3))
-        # for j in range(5):
-        #     for k in range(5):
-        #         i = np.random.choice(range(len(reshaped_g)))
-        #         axes1[j][k].set_axis_off()
-        #         axes1[j][k].imshow(reshaped_g[i:i + 1][0])
+            # Show Images
+            # reshaped_g = np.transpose(np.reshape(g.values, (g.shape[0], 3, 32, 32)), (0, 2, 3, 1))
+            # fig, axes1 = plt.subplots(5, 5, figsize=(3, 3))
+            # for j in range(5):
+            #     for k in range(5):
+            #         i = np.random.choice(range(len(reshaped_g)))
+            #         axes1[j][k].set_axis_off()
+            #         axes1[j][k].imshow(reshaped_g[i:i + 1][0])
 
 
-        # ***************For Error Part 1
+            # ***************For Error Part 1
     create_error_bar(label_error)
 
     # ************ For Part 2
